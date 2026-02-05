@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkinAI</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+    }
+
+    /* Top Navigation with Enhanced Hover Effects */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 5%;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 500;
+      padding: 5px 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    /* Underline hover effect for nav links */
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #007BFF;
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    
+    nav a:hover:after {
+      width: 100%;
+    }
+    
+    .help-btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .help-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+
+    /* Hero Section with Video Background */
+    .hero {
+      position: relative;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5%;
+      overflow: hidden; /* Ensure video doesn't spill out */
+    }
+    
+    /* Video Background Styling */
+    .video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Cover the entire container */
+      z-index: 1;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.4); /* Dark overlay for readability */
+      z-index: 2;
+    }
+    
+    .hero-content {
+      position: relative; /* So it sits on top of the overlay */
+      color: #fff;
+      max-width: 600px;
+      z-index: 3; /* Ensure content is above video and overlay */
+    }
+    
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    
+    .upload-btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .upload-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,123,255,0.4);
+    }
+
+    /* Benefits Section with Enhanced Card Hover Effects */
+    .benefits {
+      padding: 60px 5%;
+      text-align: center;
+    }
+    
+    .benefits h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+    
+    .benefit-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .card {
+      flex: 1 1 250px;
+      max-width: 300px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+    
+    /* Card hover effects */
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      border-bottom: 3px solid #007BFF;
+      background-color: #fff;
+    }
+    
+    .card h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    
+    .card:hover h3 {
+      color: #007BFF;
+    }
+    
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #555;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        height: 50vh;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .benefits h2 {
+        font-size: 1.7rem;
+      }
+      .card {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <div class="logo">SkinAI</div>
+    <nav>
+      <a href="/" style="color: #007BFF;">Home</a>
+      <a href="/upload">Upload</a>
+      <a href="/result">Results</a>
+      <a href="/dashboard">Dashboard</a>
+      <button class="help-btn">Help</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Video Background -->
+  <section class="hero">
+    <!-- Video Background -->
+    <video class="video-bg" autoplay muted loop>
+      <source src="{{ url_for('static', filename='videos/background-video.mp4') }}" type="video/mp4">
+      <!-- Add fallback sources if needed -->
+      <source src="{{ url_for('static', filename='videos/background-video.webm') }}" type="video/webm">
+      <!-- Fallback for browsers that don't support video -->
+      Your browser does not support the video tag.
+    </video>
+    
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Identify Skin Issues Instantly</h1>
+      <p>Upload an image to get AI-driven skin health insights.</p>
+      <a href="/upload"><button class="upload-btn">Upload Image</button></a>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits">
+    <h2>Benefits of the Service</h2>
+    <div class="benefit-cards">
+      <!-- Card 1 -->
+      <div class="card">
+        <h3>Accurate Identification</h3>
+        <p>Our tool analyzes skin images to provide precise detections, minimizing human error.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="card">
+        <h3>Diverse Skin Conditions</h3>
+        <p>Identify various issues like psoriasis, eczema, and more with our comprehensive database.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <h3>Speed and Efficiency</h3>
+        <p>Our service provides rapid results, enabling timely medical interventions.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // JavaScript can be added here for additional functionality
+    document.querySelector('.upload-btn').addEventListener('click', function() {
+      window.location.href = '/upload';
+    });
+  </script>
+
+</body>
+</html>

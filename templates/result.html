@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkinAI - Results</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      color: #000;
+    }
+
+    /* Top Navigation with Enhanced Hover Effects */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 5%;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 500;
+      padding: 5px 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    /* Underline hover effect for nav links */
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #007BFF;
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    
+    nav a:hover:after {
+      width: 100%;
+    }
+    
+    .help-btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .help-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+
+    /* Main Content Area */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Results Section */
+    .results-section {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+
+    .results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .results-header h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .results-header .new-analysis {
+      background-color: #f8f9fa;
+      color: #333;
+      border: 1px solid #ddd;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .results-header .new-analysis:hover {
+      background-color: #e9ecef;
+      transform: translateY(-2px);
+    }
+
+    /* Results Grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 30px;
+    }
+
+    /* Image Section */
+    .image-section {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .image-caption {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Analysis Section */
+    .analysis-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .analysis-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 4px solid #007BFF;
+    }
+
+    .analysis-card h2 {
+      font-size: 1.4rem;
+      color: #333;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .confidence-badge {
+      background-color: #e6f4ff;
+      color: #0066cc;
+      font-size: 0.9rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: normal;
+    }
+
+    .analysis-card p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* Recommendations List */
+    .recommendations-list {
+      margin-top: 10px;
+    }
+
+    .recommendations-list h3 {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .recommendations-list ul {
+      padding-left: 20px;
+    }
+
+    .recommendations-list li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    /* Other Possible Conditions */
+    .other-conditions {
+      margin-top: 20px;
+    }
+
+    .other-conditions h3 {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .condition-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .condition-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .condition-name {
+      min-width: 100px;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      flex-grow: 1;
+      height: 10px;
+      background-color: #e9ecef;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: #007BFF;
+    }
+
+    .condition-percentage {
+      font-size: 0.9rem;
+      color: #666;
+      min-width: 50px;
+      text-align: right;
+    }
+
+    /* Q&A Section */
+    .qa-section {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      padding: 40px;
+    }
+
+    .qa-section h2 {
+      font-size: 1.6rem;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    .qa-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .qa-input {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .qa-btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 0 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .qa-btn:hover {
+      background-color: #0056b3;
+    }
+    
+    #mic-btn {
+    background-color: #28a745;
+    min-width: 44px;
+    transition: all 0.3s ease;
+    }
+
+    #mic-btn:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+    }
+
+    #mic-btn.recording {
+        background-color: #dc3545;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
+    }
+
+    .qa-response {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 4px solid #28a745;
+      margin-bottom: 20px;
+      display: none; /* Initially hidden */
+    }
+
+    .qa-response h3 {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .qa-response p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .disclaimer {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff8e1;
+      border-left: 4px solid #ffc107;
+      font-size: 0.9rem;
+      color: #6c4a00;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    /* Loader */
+    .loader-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #007BFF;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+        margin: 20px auto;
+      }
+      
+      .results-section, .qa-section {
+        padding: 30px 15px;
+      }
+      
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .results-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <div class="logo">SkinAI</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/upload">Upload</a>
+      <a href="/result" style="color: #007BFF;">Results</a>
+      <a href="/dashboard">Dashbaord</a>
+      <button class="help-btn">Help</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Results Section -->
+    <section class="results-section">
+      <div class="results-header">
+        <h1>Analysis Results</h1>
+        <a href="upload" class="new-analysis">Upload New Image</a>
+      </div>
+      
+      <div class="results-grid">
+        <!-- Image Section -->
+        <div class="image-section">
+          <img id="analyzed-image" src="#" alt="Analyzed Skin Image">
+          <div class="image-caption">Uploaded on <span id="upload-date">April 8, 2025</span></div>
+        </div>
+        
+        <!-- Analysis Section -->
+        <div class="analysis-section">
+          <div class="analysis-card">
+            <h2>
+              <span id="condition-name">Loading result...</span>
+              <span class="confidence-badge" id="confidence-level">--</span>
+            </h2>
+            <p id="condition-description">Analyzing your image...</p>
+            
+            <!-- Loader (initially shown) -->
+            <div class="loader-container" id="analysis-loader">
+              <div class="loader"></div>
+              <span>Processing image with AI...</span>
+            </div>
+            
+            <!-- Recommendations (initially hidden) -->
+            <div class="recommendations-list" id="recommendations-section" style="display: none;">
+              <h3>Recommendations</h3>
+              <ul id="recommendations-list">
+                <!-- Recommendations will be inserted here -->
+              </ul>
+            </div>
+            
+            <!-- Other Possible Conditions -->
+            <div class="other-conditions" id="other-conditions-section" style="display: none;">
+              <h3>Other Possible Conditions</h3>
+              <div class="condition-bars" id="condition-bars">
+                <!-- Condition bars will be inserted here -->
+              </div>
+            </div>
+          </div>
+          
+          <div class="disclaimer">
+            <strong>Disclaimer:</strong> This analysis is for informational purposes only and should not replace professional medical advice. Please consult a healthcare provider for proper diagnosis and treatment.
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Q&A Section -->
+    <section class="qa-section">
+      <h2>Ask About Your Condition</h2>
+      <div class="qa-form">
+        <input type="text" class="qa-input" id="question-input" placeholder="Ask a question about your skin condition...">
+        <button class="qa-btn" id="mic-btn" type="button">🎤</button>
+        <button class="qa-btn" id="ask-btn">Ask</button>
+      </div>
+      
+      <!-- QA Response (initially hidden) -->
+      <div class="qa-response" id="qa-response">
+        <h3>Response</h3>
+        <p id="qa-answer">The answer will appear here.</p>
+      </div>
+      
+      <div class="disclaimer">
+        <strong>Important:</strong> The AI assistant provides general information about skin conditions. Your specific case may vary, and medical professionals should be consulted for personalized advice and treatment.
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 SkinAI. All rights reserved. For educational purposes only. Not a substitute for professional medical advice.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Retrieve data from sessionStorage (set during upload)
+      const imageData = sessionStorage.getItem('analyzedImage');
+      const analysisResult = JSON.parse(sessionStorage.getItem('analysisResult') || '{}');
+      const condition = sessionStorage.getItem('detectedCondition') || '';
+      
+      // Set the image
+      if (imageData) {
+        document.getElementById('analyzed-image').src = imageData;
+      } else {
+        document.getElementById('analyzed-image').src = "/api/placeholder/400/320";
+        document.getElementById('analyzed-image').alt = "No image available";
+      }
+      
+      // Set the current date
+      const now = new Date();
+      document.getElementById('upload-date').textContent = now.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+      
+      // Process and display results if available
+      if (Object.keys(analysisResult).length > 0) {
+        displayResults(analysisResult);
+      } else {
+        // If no results in session storage, check URL params
+        // This allows direct navigation to this page with the results as parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const resultParam = urlParams.get('result');
+        
+        if (resultParam) {
+          try {
+            const decodedResult = JSON.parse(decodeURIComponent(resultParam));
+            displayResults(decodedResult);
+          } catch (e) {
+            console.error("Failed to parse result from URL parameter", e);
+            document.getElementById('condition-name').textContent = "No results available";
+            document.getElementById('condition-description').textContent = "Please upload an image for analysis.";
+            document.getElementById('analysis-loader').style.display = "none";
+          }
+        } else {
+          // No results available - show message
+          document.getElementById('condition-name').textContent = "No results available";
+          document.getElementById('condition-description').textContent = "Please upload an image for analysis.";
+          document.getElementById('analysis-loader').style.display = "none";
+        }
+      }
+      
+      // Handle Q&A form submission
+      document.getElementById('ask-btn').addEventListener('click', function() {
+        askQuestion();
+      });
+      
+      document.getElementById('question-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          askQuestion();
+        }
+      });
+      
+      // Function to display analysis results
+      function displayResults(result) {
+        // Hide loader
+        document.getElementById('analysis-loader').style.display = "none";
+        
+        // Display primary condition and confidence
+        document.getElementById('condition-name').textContent = result.prediction || "Unknown Condition";
+        
+        const confidencePercent = result.confidence ? Math.round(result.confidence * 100) : 0;
+        document.getElementById('confidence-level').textContent = `${confidencePercent}% Confidence`;
+        
+        // Display description
+        document.getElementById('condition-description').textContent = result.description || 
+          "No detailed information available for this condition.";
+        
+        // Display recommendations
+        if (result.recommendations && result.recommendations.length > 0) {
+          const recommendationsList = document.getElementById('recommendations-list');
+          recommendationsList.innerHTML = '';
+          
+          result.recommendations.forEach(rec => {
+            const li = document.createElement('li');
+            li.textContent = rec;
+            recommendationsList.appendChild(li);
+          });
+          
+          document.getElementById('recommendations-section').style.display = "block";
+        }
+        
+        // Display other possible conditions
+        if (result.topConditions && result.topConditions.length > 0) {
+          const conditionBars = document.getElementById('condition-bars');
+          conditionBars.innerHTML = '';
+          
+          // Skip the first condition (already shown as primary) if it's the same as the top result
+          const startIndex = (result.topConditions[0][0] === result.prediction) ? 1 : 0;
+          
+          // Display up to 4 additional conditions
+          for (let i = startIndex; i < Math.min(startIndex + 4, result.topConditions.length); i++) {
+            const condition = result.topConditions[i];
+            const conditionName = condition[0];
+            const probability = condition[1];
+            const percentage = Math.round(probability * 100);
+            
+            const conditionBar = document.createElement('div');
+            conditionBar.className = 'condition-bar';
+            conditionBar.innerHTML = `
+              <div class="condition-name">${conditionName}</div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${percentage}%"></div>
+              </div>
+              <div class="condition-percentage">${percentage}%</div>
+            `;
+            
+            conditionBars.appendChild(conditionBar);
+          }
+          
+          document.getElementById('other-conditions-section').style.display = "block";
+        }
+        
+        // Store detected condition for Q&A
+        sessionStorage.setItem('detectedCondition', result.prediction || '');
+      }
+      
+      // Function to handle Q&A
+      // Modify the askQuestion function in result.html
+function askQuestion() {
+    const questionInput = document.getElementById('question-input');
+    const question = questionInput.value.trim();
+    
+    if (!question) return;
+    
+    // Get the detected condition
+    const detectedCondition = sessionStorage.getItem('detectedCondition') || '';
+    
+    // Get user's browser language
+    const userLanguage = navigator.language || navigator.userLanguage || 'en-US';
+    
+    // Show loading indication
+    document.getElementById('qa-answer').textContent = "Getting answer...";
+    document.getElementById('qa-response').style.display = "block";
+    
+    // Call the backend API with language information
+    fetch('/ask', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            question: question,
+            condition: detectedCondition,
+            language: userLanguage
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('qa-answer').textContent = data.answer || 
+            "I couldn't generate an answer for that question.";
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('qa-answer').textContent = 
+            "Sorry, there was an error processing your question. Please try again later.";
+    });
+    
+    // Clear the input
+    questionInput.value = '';
+}
+      // Add this to your existing script in result.html
+      // Speech Recognition Setup
+      let recognition;
+      function setupSpeechRecognition() {
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+          // Initialize speech recognition
+          recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+          recognition.continuous = false;
+          recognition.interimResults = false;
+          
+          // Get user language preference from browser
+          const userLanguage = navigator.language || navigator.userLanguage || 'en-US';
+          recognition.lang = userLanguage;
+          
+          recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById('question-input').value = transcript;
+            // Auto-submit after voice input if text is available
+            if (transcript.trim().length > 0) {
+              setTimeout(() => askQuestion(), 500);
+            }
+          };
+          
+          recognition.onerror = function(event) {
+            console.error('Speech recognition error', event.error);
+            if (event.error === 'not-allowed') {
+              alert('Please enable microphone access to use voice input');
+            }
+          };
+          
+          // Set up microphone button
+          document.getElementById('mic-btn').addEventListener('click', function() {
+            if (this.textContent === '🎙️') {
+              recognition.start();
+              this.textContent = '⏹️';
+            } else {
+              recognition.stop();
+              this.textContent = '🎙️';
+            }
+          });
+          
+          // Reset button when recognition ends
+          recognition.onend = function() {
+            document.getElementById('mic-btn').textContent = '🎙️';
+          };
+        } else {
+          // Hide mic button if speech recognition isn't supported
+          document.getElementById('mic-btn').style.display = 'none';
+        }
+      }
+      setupSpeechRecognition();
+
+    });
+  </script>
+
+</body>
+</html>

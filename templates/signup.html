@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkinAI - Sign Up</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      color: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation with Enhanced Hover Effects */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 5%;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 500;
+      padding: 5px 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    /* Underline hover effect for nav links */
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #007BFF;
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    
+    nav a:hover:after {
+      width: 100%;
+    }
+    
+    .help-btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .help-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+
+    /* Main Content Area */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Authentication Form */
+    .auth-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, #007BFF, #00c6ff);
+    }
+
+    .auth-container h1 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-container h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background-color: #007BFF;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+      outline: none;
+    }
+
+    .form-group .input-with-icon {
+      position: relative;
+    }
+
+    .form-group .input-with-icon input {
+      padding-left: 40px;
+    }
+
+    .form-group .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa;
+    }
+
+    .btn {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,123,255,0.4);
+    }
+
+    .auth-separator {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: #888;
+    }
+
+    .auth-separator::before,
+    .auth-separator::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #ddd;
+    }
+
+    .auth-separator span {
+      padding: 0 15px;
+      font-size: 0.9rem;
+    }
+
+    .social-login {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background-color: #f5f5f5;
+      border-color: #ccc;
+    }
+
+    .social-btn img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .auth-footer a {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Password Strength */
+    .password-strength {
+      height: 5px;
+      margin-top: 8px;
+      border-radius: 3px;
+      background-color: #eee;
+    }
+
+    .password-strength-meter {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+
+    .strength-weak {
+      width: 33%;
+      background-color: #ff4d4d;
+    }
+
+    .strength-medium {
+      width: 66%;
+      background-color: #ffd633;
+    }
+
+    .strength-strong {
+      width: 100%;
+      background-color: #00cc66;
+    }
+
+    .password-requirements {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 8px;
+    }
+
+    .requirement-met {
+      color: #00cc66;
+    }
+
+    /* Checkbox Styling */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group input {
+      margin-right: 10px;
+      width: auto;
+    }
+
+    .checkbox-group label {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      color: #777;
+      font-size: 0.9rem;
+      background-color: #fff;
+      border-top: 1px solid #eee;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+        margin: 20px auto;
+      }
+      
+      .auth-container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <div class="logo">SkinAI</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/upload">Upload</a>
+      <a href="/result">Results</a>
+      <a href="#">Contact</a>
+      <button class="help-btn">Help</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Signup Form -->
+    <div class="auth-container">
+      <h1>Create an Account</h1>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" style="background-color: {% if category == 'danger' %}#f8d7da{% elif category == 'success' %}#d4edda{% elif category == 'info' %}#d1ecf1{% else %}#fff3cd{% endif %}; padding: 10px; margin-bottom: 20px; border-radius: 4px; color: #333;">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form id="signup-form" action="/signup" method="POST">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <div class="input-with-icon">
+            <i>👤</i>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+          </div>
+        </div>
+        
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <div class="input-with-icon">
+            <i>✉️</i>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+        </div>
+        
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-with-icon">
+            <i>🔒</i>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+          </div>
+          <div class="password-strength">
+            <div class="password-strength-meter" id="password-meter"></div>
+          </div>
+          <div class="password-requirements" id="password-requirements">
+            Password should contain at least 8 characters, including uppercase, lowercase, numbers, and special characters.
+          </div>
+        </div>
+        
+        <!-- Terms & Conditions -->
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.</label>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Sign Up</button>
+        
+        <!-- Social Login -->
+        <div class="auth-separator">
+          <span>or sign up with</span>
+        </div>
+        
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <a href="{{ url_for('google_login') }}" class="social-btn" style="display: flex; align-items: center; padding: 10px 20px; border: 1px solid #ddd; border-radius: 4px; background-color: #fff; text-decoration: none;">
+              <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" style="width: 24px; height: 24px; margin-right: 10px;">
+              Continue with Google
+            </a>
+          </div>
+        
+        <!-- Login Link -->
+        <div class="auth-footer">
+          Already have an account? <a href="/login">Log in</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 SkinAI. All rights reserved. For educational purposes only. Not a substitute for professional medical advice.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('signup-form');
+  const submitButton = form.querySelector('.btn');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    submitButton.disabled = true;
+    submitButton.innerText = 'Signing up...';
+
+    const formData = new FormData(form);
+
+    fetch('/signup', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+      .then(async response => {
+        const contentType = response.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+          const text = await response.text();
+          console.error('❌ Unexpected response (not JSON):', text);
+          alert('Signup failed. Server did not return JSON.');
+          return;
+        }
+
+        const data = await response.json();
+        console.log('✅ Server response:', data);
+
+        if (data.success) {
+          window.location.href = '/login';
+        } else {
+          alert(data.message || 'Signup failed.');
+        }
+      })
+      .catch(error => {
+        console.error('❌ Fetch error:', error);
+        alert('Signup failed. Could not reach the server.');
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+        submitButton.innerText = 'Sign Up';
+      });
+  });
+});
+  </script>
+
+</body>
+</html>

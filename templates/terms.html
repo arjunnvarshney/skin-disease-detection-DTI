@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Agreement & Terms of Service</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f9f9f9;
+      padding: 30px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #111;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 30px;
+      color: #222;
+    }
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #2b7cff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    a.btn:hover {
+      background-color: #195ccf;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>User Agreement & Terms of Service</h1>
+
+    <h2>1. Introduction</h2>
+    <p>Welcome to our AI-powered <strong>Skin Disease Detection System</strong>. By using this service, you acknowledge that this tool is designed to provide preliminary insights into potential skin conditions and is <strong>not a substitute for professional medical advice</strong>. Please read the following terms carefully before proceeding.</p>
+
+    <h2>2. Acceptance of Terms</h2>
+    <p>By accessing and using this system, you agree to comply with these terms. If you do not agree, please refrain from using this service. Your continued usage constitutes acceptance of any future modifications.</p>
+
+    <h2>3. Purpose & Limitations</h2>
+    <ul>
+      <li>This system <strong>does not provide a medical diagnosis</strong>. It is an AI-based tool that analyzes images to suggest possible skin conditions.</li>
+      <li>It should <strong>not</strong> be used as a replacement for a dermatologist or licensed medical professional.</li>
+      <li>The tool provides <strong>probabilistic assessments</strong> and may have limitations in accuracy.</li>
+      <li>If you experience worsening symptoms or suspect a serious condition, consult a <strong>qualified healthcare provider immediately</strong>.</li>
+    </ul>
+
+    <h2>4. User Responsibilities</h2>
+    <ul>
+      <li>Upload <strong>clear and relevant images</strong> of your skin condition for better analysis.</li>
+      <li><strong>Avoid uploading</strong> offensive, inappropriate, or misleading images.</li>
+      <li>Use the provided insights <strong>only for informational purposes</strong> and not as a final medical judgment.</li>
+      <li>Understand that the AI model may not recognize all conditions or provide an exact match.</li>
+    </ul>
+
+    <h2>5. Data Privacy & Security</h2>
+    <ul>
+      <li>The system may collect and process images for analysis but does not store them permanently.</li>
+      <li>No personally identifiable information (PII) is required to use this service.</li>
+      <li>We prioritize <strong>data security</strong> but cannot guarantee absolute protection from breaches. Users are advised to use the system responsibly.</li>
+    </ul>
+
+    <h2>6. Accuracy & Liability</h2>
+    <ul>
+      <li>The AI model operates on a dataset trained with available skin disease images, but <strong>results may vary</strong> based on image quality, skin type, and external factors.</li>
+      <li>The service providers shall not be held responsible for any misdiagnosis, treatment decisions, or complications arising from reliance on the AI output.</li>
+      <li>Users must understand that <strong>medical consultation is always recommended</strong> for confirmation and proper treatment.</li>
+    </ul>
+
+    <h2>7. Third-Party Services & References</h2>
+    <p>This system may provide links to medical resources or partner services for further consultation. We are <strong>not responsible</strong> for third-party content, their accuracy, or any actions taken based on external recommendations.</p>
+
+    <h2>8. Modifications to the Service</h2>
+    <p>We reserve the right to update, modify, or discontinue this service at any time without prior notice. Continued usage after updates implies acceptance of revised terms.</p>
+
+    <h2>9. Contact & Support</h2>
+    <p>If you have any questions or concerns regarding this agreement, please reach out to our support team.</p>
+
+    <h2>10. Agreement Confirmation</h2>
+    <p>By clicking <strong>“I Agree”</strong>, you acknowledge that you have read, understood, and accepted these terms. If you do not agree, please exit the application.</p>
+
+    <a href="{{ url_for('signup') }}" class="btn">I Agree</a>
+  </div>
+</body>
+</html>

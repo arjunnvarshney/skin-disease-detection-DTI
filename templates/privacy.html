@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Policy</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f9f9f9;
+      padding: 30px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #111;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 30px;
+      color: #222;
+    }
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #2b7cff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    a.btn:hover {
+      background-color: #195ccf;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+
+    <p>We are committed to protecting your privacy. This policy explains how we handle the information you provide while using our AI-powered Skin Disease Detection System.</p>
+
+    <h2>1. What We Collect</h2>
+    <ul>
+      <li>Uploaded skin images for analysis (processed temporarily in memory)</li>
+      <li>No personally identifiable information (PII) is required or stored by default</li>
+    </ul>
+
+    <h2>2. How We Use Your Data</h2>
+    <ul>
+      <li>To analyze uploaded images and return potential skin condition predictions</li>
+      <li>To improve the accuracy of our AI (in anonymized, aggregate form only, if ever stored)</li>
+    </ul>
+
+    <h2>3. Image Handling & Security</h2>
+    <ul>
+      <li>Uploaded images are used solely for immediate analysis and are not permanently stored on our servers</li>
+      <li>We take standard precautions to protect your data during processing</li>
+      <li>Users are encouraged not to upload images containing sensitive content or identifying marks</li>
+    </ul>
+
+    <h2>4. Cookies & Session Data</h2>
+    <ul>
+      <li>We may use session cookies to keep you logged in securely</li>
+      <li>No tracking cookies or ad-related data is collected</li>
+    </ul>
+
+    <h2>5. Third-Party Services</h2>
+    <p>Our service may integrate with third-party tools (e.g. AI models or external resources). We are not responsible for how these third parties handle your data. Please refer to their respective privacy policies.</p>
+
+    <h2>6. Your Rights</h2>
+    <ul>
+      <li>You have the right to stop using the service at any time</li>
+      <li>You may request removal of any optional data submitted</li>
+    </ul>
+
+    <h2>7. Changes to This Policy</h2>
+    <p>We may update this privacy policy at any time. All changes will be posted on this page. Continued use of the service implies acceptance of updated terms.</p>
+
+    <h2>8. Contact Us</h2>
+    <p>If you have questions about this policy or our data handling practices, please contact our support team.</p>
+
+    <a href="{{ url_for('signup') }}" class="btn">I Agree</a>
+  </div>
+</body>
+</html>
