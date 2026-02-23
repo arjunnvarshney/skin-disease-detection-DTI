@@ -12,14 +12,18 @@ from dotenv import load_dotenv
 
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)  # Generate a secure secret key
+app.secret_key = os.environ.get("SECRET_KEY", secrets.token_hex(16))
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # Session lasts for 7 days
 
 # =======================================
 # 📊 Database Configuration
 # =======================================
-# Replace with your actual PostgreSQL credentials when deploying
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+# Handle Render/Heroku DATABASE_URL which often uses postgres:// (unsupported by SQLAlchemy 1.4+)
+db_url = os.environ.get("DATABASE_URL")
+if db_url and db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url or "sqlite:///skin_disease.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -608,9 +612,15 @@ def placeholder(width, height):
 # =======================================
 # 📊 Initialize Database
 # =======================================
-@app.before_request
-def create_tables():
-    db.create_all()
+# =======================================
+# 📊 Initialize Database (One-time)
+# =======================================
+with app.app_context():
+    try:
+        db.create_all()
+        print("✅ Database tables initialized!")
+    except Exception as e:
+        print(f"❌ Database initialization error: {e}")
 
 if __name__ == '__main__':
     app.run(debug=True)
